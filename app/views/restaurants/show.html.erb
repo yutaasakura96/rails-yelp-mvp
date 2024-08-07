@@ -1,0 +1,44 @@
+<div class="container mt-2">
+  <div class="row justify-content-around">
+    <div class="col-12 col-sm-8">
+      <p>
+        <%= link_to '< Restaurants', restaurants_path, class: 'btn-light opacity-25 text-decoration-none' %>
+      </p>
+      <div class="d-flex align-items-center">
+        <h1 class="m-0"><%= @restaurant.name %></h1>
+      </div>
+        <p class="m-0 ms-2" style="font-size: 0.8em">
+          <%= @restaurant.category %>
+        </p>
+        <p class="m-0 ms-2" style="font-size: 0.8em">
+          <%= @restaurant.address %>
+        </p>
+        <p class="m-0 ms-2" style="font-size: 0.8em">
+          <%= @restaurant.phone_number %>
+        </p>
+      <p class="fw-lighter opacity-75 mt-2"><%= Faker::Restaurant.description  %></p>
+      <h3>Reviews</h3>
+      <ul>
+        <% if @restaurant.reviews.any? %>
+          <% @restaurant.reviews.each do |review| %>
+            <li>
+          <p class="m-0 ms-2" style="font-size: 0.8em">
+          <% review.rating.times do %>
+            <i class="fas fa-star"></i>
+          <% end %>
+          <% (5 - review.rating).times do %>
+            <i class="far fa-star"></i>
+          <% end %>
+        </p>
+            </li>
+            <li>
+              <%= review.content %>
+            </li>
+          <% end %>
+        <% else %>
+          <li>No reviews yet.</li>
+        <% end %>
+        <p><%= link_to 'Add Review', new_restaurant_review_path(@restaurant) %></p>
+      </ul>
+    </div>
+</div>
