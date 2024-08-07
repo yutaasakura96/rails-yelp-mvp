@@ -1,4 +1,4 @@
 
-<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://loremflickr.com/320/240/restaurant,<%= restaurant.category.downcase %>?lock=<%= restaurant.id %>)">
+<div class="card-category p-5 d-flex justify-content-center fw-bold fs-1" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://loremflickr.com/320/240/restaurant,<%= restaurant.category.downcase %>?lock=<%= restaurant.id %>)">
   <%= link_to restaurant.name, restaurant_path(restaurant), class: 'text-decoration-none text-white' %>
 </div>
