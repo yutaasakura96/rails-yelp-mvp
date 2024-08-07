@@ -7,3 +7,33 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# db/seeds.rb
+
+puts "Cleaning the DB..."
+Restaurant.destroy_all
+
+puts "Creating Restaurants..."
+
+5.times do
+  Restaurant.create!(
+    name: Faker::Restaurant.name,
+    address: Faker::Address.street_address,
+    category: Restaurant::CATEGORY.sample
+  )
+end
+
+puts "...created #{Restaurant.count} restaurants."
+
+puts "Creating Reviews..."
+
+Restaurant.all.each do |restaurant|
+  5.times do
+    Review.create!(
+      content: Faker::Restaurant.review,
+      rating: rand(0..5),
+      restaurant: restaurant
+    )
+  end
+end
+
+puts "...created #{Review.count} reviews."
